@@ -1,53 +1,32 @@
 # Untitled Tower Defense
 
-An original anime-inspired tower defense game framework for Roblox Studio.
+Anime-character tower-defense framework with portals, summons, economy units, traits, and server validation.
 
-## Traits
+Example roster: Speedwagon, Bulma, Nami, Tanjiro, Naruto, Luffy, Ichigo, Goku, Gojo, and Sakura.
 
-Units can roll traits through the server-side Trait Reroll system.
+Money units:
+- Speedwagon: passive income
+- Bulma: stronger passive income
+- Nami: income plus hybrid damage and chest-style bonus support
 
-### Ultra-rare trait: Untitled
+Traits:
+- Untitled: 0.1% chance, +300% damage, -40% cooldown, +30% range, and 4x money generation on economy units
+- Golden: +20% income
+- Fortune: +35% income
+- Investor: +50% income with a damage tradeoff
 
-- **Displayed name:** Untitled
-- **Roll chance:** 0.1%
-- **Damage:** +300% (4x total damage)
-- **Cooldown:** -40% (0.60x cooldown)
-- **Range:** +30% (1.30x range)
+Portals:
+- Starter Portal
+- Legendary Portal
+- Single and 10x summons
+- Server-side gem checks, weighted rolls, and inventory rewards
 
-Other starter traits include Focused, Swift, Powerful, Hunter, and Basic.
+Studio setup:
+1. Create a Baseplate experience named Untitled Tower Defense.
+2. Copy ReplicatedStorage files into matching ModuleScripts.
+3. Copy ServerScriptService files into matching Scripts.
+4. Build your unit placement system around UnitDefinitions.
+5. Build portal UI around ReplicatedStorage.PortalSummon.
+6. Apply traits server-side to damage, cooldown, range, and income.
 
-## Trait rerolls
-
-Players start with 5 `TraitRerolls`. The server validates reroll requests and subtracts one reroll per attempt.
-
-The RemoteFunction is:
-
-```text
-ReplicatedStorage.TraitReroll
-```
-
-Call it from a client UI with the unit name. The server performs the roll and returns the resulting trait.
-
-## Roblox Studio setup
-
-1. Create a new **Baseplate** project.
-2. Rename the experience to **Untitled Tower Defense**.
-3. In `ReplicatedStorage`, create a ModuleScript named `TraitDefinitions` and copy `src/ReplicatedStorage/TraitDefinitions.lua` into it.
-4. In `ServerScriptService`, keep/create `GameConfig`, `PlayerData`, and `AdminCommands` and copy their matching files.
-5. Create a Script named `TraitService` in `ServerScriptService` and copy `src/ServerScriptService/TraitService.server.lua` into it.
-6. Test with **Play**. The player starts with 5 Trait Rerolls.
-7. Build a UI with a unit selector and Reroll button that invokes `ReplicatedStorage.TraitReroll:InvokeServer(unitName)`.
-
-## Applying trait stats to a tower
-
-When a tower is created, read its unit's trait and apply:
-
-```lua
-finalDamage = baseDamage * trait.DamageMultiplier
-finalCooldown = baseCooldown * trait.CooldownMultiplier
-finalRange = baseRange * trait.RangeMultiplier
-```
-
-Keep the calculation on the server so clients cannot change their own trait bonuses.
-
-All characters, names, maps, animations, sounds, and visual assets should be original or properly licensed.
+Important: use anime character names/assets only when you have the necessary rights or licenses. This repo provides gameplay architecture and does not include protected anime models, animations, sounds, maps, UI, or proprietary game code.
