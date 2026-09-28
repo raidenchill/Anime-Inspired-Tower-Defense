@@ -1,32 +1,13 @@
 # Untitled Tower Defense
 
-Anime-character tower-defense framework with portals, summons, economy units, traits, and server validation.
+Added a procedural neon lobby, anime-themed story chapters, Infinite mode, secret portal drops, and Banner 1.
 
-Example roster: Speedwagon, Bulma, Nami, Tanjiro, Naruto, Luffy, Ichigo, Goku, Gojo, and Sakura.
+Lobby: StarterPlayerScripts/LobbyVisuals.client.lua creates a neon plaza with Story, Infinite, Summon, and Traits zones, bloom lighting, a title, and portal-style pads.
 
-Money units:
-- Speedwagon: passive income
-- Bulma: stronger passive income
-- Nami: income plus hybrid damage and chest-style bonus support
+Story chapters: Dragon Ball, One Piece, Naruto, Demon Slayer, Bleach, and Jujutsu Kaisen themed stages with increasing waves and recommended levels.
 
-Traits:
-- Untitled: 0.1% chance, +300% damage, -40% cooldown, +30% range, and 4x money generation on economy units
-- Golden: +20% income
-- Fortune: +35% income
-- Investor: +50% income with a damage tradeoff
+Infinite: Anime Rift Infinite has unlimited waves. Every 10 waves it can award an anime secret portal. The server grants portal inventory items.
 
-Portals:
-- Starter Portal
-- Legendary Portal
-- Single and 10x summons
-- Server-side gem checks, weighted rolls, and inventory rewards
+Banner 1: Ichigo is the featured unit. Ichigo Chance is 0.0001 probability, equal to 0.01%.
 
-Studio setup:
-1. Create a Baseplate experience named Untitled Tower Defense.
-2. Copy ReplicatedStorage files into matching ModuleScripts.
-3. Copy ServerScriptService files into matching Scripts.
-4. Build your unit placement system around UnitDefinitions.
-5. Build portal UI around ReplicatedStorage.PortalSummon.
-6. Apply traits server-side to damage, cooldown, range, and income.
-
-Important: use anime character names/assets only when you have the necessary rights or licenses. This repo provides gameplay architecture and does not include protected anime models, animations, sounds, maps, UI, or proprietary game code.
+Use licensed or otherwise authorized anime character models, textures, animations, sounds, maps, and UI art. The repository provides gameplay architecture and does not include protected anime assets or proprietary game code.
