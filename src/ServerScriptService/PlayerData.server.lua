@@ -16,7 +16,16 @@ Players.PlayerAdded:Connect(function(player)
     gems.Value = Config.StartingGems
     gems.Parent = stats
 
+    local rerolls = Instance.new("IntValue")
+    rerolls.Name = "TraitRerolls"
+    rerolls.Value = 5
+    rerolls.Parent = stats
+
     local inventory = Instance.new("Folder")
     inventory.Name = "Inventory"
     inventory.Parent = player
+
+    local traits = Instance.new("Folder")
+    traits.Name = "UnitTraits"
+    traits.Parent = player
 end)

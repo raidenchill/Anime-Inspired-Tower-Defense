@@ -1,66 +1,53 @@
-# Anime-Inspired Tower Defense — Roblox Studio
+# Untitled Tower Defense
 
-An original anime-inspired tower-defense starter. It is **not a remake of Anime Adventures** and does not include its copyrighted characters, maps, animations, sounds, or assets.
+An original anime-inspired tower defense game framework for Roblox Studio.
 
-## Roblox Studio installation
+## Traits
 
-### 1. Create the project
-Open Roblox Studio → **New → Baseplate**.
+Units can roll traits through the server-side Trait Reroll system.
 
-### 2. Create folders
-In Explorer, create:
+### Ultra-rare trait: Untitled
 
-```text
-ServerScriptService
-├── GameConfig (ModuleScript)
-├── PlayerData (Script)
-└── AdminCommands (Script)
+- **Displayed name:** Untitled
+- **Roll chance:** 0.1%
+- **Damage:** +300% (4x total damage)
+- **Cooldown:** -40% (0.60x cooldown)
+- **Range:** +30% (1.30x range)
 
-ReplicatedStorage
-└── UnitDefinitions (ModuleScript)
-```
+Other starter traits include Focused, Swift, Powerful, Hunter, and Basic.
 
-Copy each matching file from `src/` into the corresponding Studio object.
+## Trait rerolls
 
-### 3. Test
-Click **Play**. Your player should receive:
-- 500 Cash
-- 100 Gems
-- An Inventory folder
+Players start with 5 `TraitRerolls`. The server validates reroll requests and subtracts one reroll per attempt.
 
-### 4. Raidenchill admin commands
-The admin system checks the Roblox **UserId 334811058**, which is the `raidenchill` account configured for this project.
-
-In the in-game chat, use:
+The RemoteFunction is:
 
 ```text
-/give Cash 10000
-/give Gems 5000
-/give EmberSwordsman 1
-/give StormArcher 1
-/give VoidMage 1
-/giveall
-/cash 10000
-/gems 5000
+ReplicatedStorage.TraitReroll
 ```
 
-Only the configured UserId can run these commands. The commands affect the server-side values, so they are suitable for your own game rather than an executor/exploit.
+Call it from a client UI with the unit name. The server performs the roll and returns the resulting trait.
 
-### 5. Building the actual game
-Next add these folders/systems:
-- `Workspace.Map.PathNodes` — numbered enemy path parts
-- `Workspace.Enemies` — spawned enemy models
-- `Workspace.Towers` — placed towers
-- `ReplicatedStorage.Remotes` — secure client/server RemoteEvents
-- Tower placement validation on the server
-- Enemy path movement
-- Tower targeting and attacks
-- Unit upgrades/evolutions
-- Summoning/banner UI
-- Lobby and matchmaking
+## Roblox Studio setup
 
-## Recommended Studio security
-Never trust the client with Cash, Gems, unit ownership, damage, or placement. Validate all of those on the server.
+1. Create a new **Baseplate** project.
+2. Rename the experience to **Untitled Tower Defense**.
+3. In `ReplicatedStorage`, create a ModuleScript named `TraitDefinitions` and copy `src/ReplicatedStorage/TraitDefinitions.lua` into it.
+4. In `ServerScriptService`, keep/create `GameConfig`, `PlayerData`, and `AdminCommands` and copy their matching files.
+5. Create a Script named `TraitService` in `ServerScriptService` and copy `src/ServerScriptService/TraitService.server.lua` into it.
+6. Test with **Play**. The player starts with 5 Trait Rerolls.
+7. Build a UI with a unit selector and Reroll button that invokes `ReplicatedStorage.TraitReroll:InvokeServer(unitName)`.
 
-## Original-content requirement
-Use your own original names, models, animations, maps, sounds, and artwork, or assets you have permission to use.
+## Applying trait stats to a tower
+
+When a tower is created, read its unit's trait and apply:
+
+```lua
+finalDamage = baseDamage * trait.DamageMultiplier
+finalCooldown = baseCooldown * trait.CooldownMultiplier
+finalRange = baseRange * trait.RangeMultiplier
+```
+
+Keep the calculation on the server so clients cannot change their own trait bonuses.
+
+All characters, names, maps, animations, sounds, and visual assets should be original or properly licensed.
